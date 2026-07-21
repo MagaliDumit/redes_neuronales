@@ -1,8 +1,9 @@
 # TP4 - Redes Neuronales Convolucionales
 ## Clasificación de Animales (8 clases)
 
-**Materia:** Tecnicatura en Inteligencia Artificial - Universidad Nacional de Hurlingham
+**Universidad Nacional de Hurlingham**
 **Docente:** Emiliano Churruca
+**Integrante:** Magalí Abigail Dumit 
 **Fecha:** Julio 2026
 
 ---
