@@ -22,3 +22,26 @@ Repositorio con 4 Trabajos Prácticos sobre redes neuronales, implementados en P
 **TP3 — Autocodificadores:** Autoencoders en Keras para compresión y denoising de caracteres Font3, y autoencoder generativo sobre MNIST con espacio latente 2D interactivo.
 
 **TP4 — Redes Convolucionales:** Clasificación de imágenes de animales (8 clases) con CNN custom y Transfer Learning (MobileNetV2). El modelo con transfer learning alcanza 96.76% de accuracy.
+
+## Requisitos
+
+- Python 3.8 o superior
+- numpy
+- matplotlib
+- scipy (TP1 y TP2)
+- tensorflow (TP3 y TP4)
+- opencv-python (TP4)
+- scikit-learn (TP4)
+
+Instalación rápida:
+
+```bash
+pip install numpy matplotlib scipy tensorflow opencv-python scikit-learn
+```
+
+Para ejecutar un TP, situarse en su directorio y correr `main.py`:
+
+```bash
+cd tp1PerceptronSimple
+python main.py
+```
