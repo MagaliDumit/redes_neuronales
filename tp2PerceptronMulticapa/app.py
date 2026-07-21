@@ -75,18 +75,49 @@ class MenuApp:
         X = np.array([[-1, 1], [1, -1], [-1, -1], [1, 1]])
         y = np.array([[1], [1], [-1], [-1]])
 
-        model = ModularMultiLayerPerceptron([2, 2, 1], ['tanh', 'tanh'], eta=0.1)
-        errors = []
-        for epoch in range(2000):
-            total_err = 0
-            for V, t in zip(X, y):
-                total_err += model.train_sample(V, t)
-            errors.append(total_err / len(X))
-            if total_err < 0.01:
-                break
-        self.xor_model = model
-        self.xor_errors = errors
-        return epoch + 1, errors[-1]
+        N = [0.01, 0.05, 0.1, 0.5, 1.0]
+        B = [0.5, 0.8, 1.0, 1.5, 2.0]
+        COTA = 10000
+
+        best_model = None
+        best_errors = None
+        best_err = np.inf
+        best_eta = None
+        best_beta = None
+        best_epochs = 0
+
+        for n in N:
+            for b in B:
+                model = ModularMultiLayerPerceptron([2, 2, 1], ['tanh', 'tanh'], eta=n, beta=b)
+                errors = []
+                for epoch in range(COTA):
+                    total_err = 0
+                    for V, t in zip(X, y):
+                        total_err += model.train_sample(V, t)
+                    errors.append(total_err / len(X))
+                    if total_err < 0.01:
+                        break
+                final_err = errors[-1]
+                if final_err < best_err:
+                    best_err = final_err
+                    best_model = model
+                    best_errors = errors
+                    best_eta = n
+                    best_beta = b
+                    best_epochs = epoch + 1
+
+        self.xor_model = best_model
+        self.xor_errors = best_errors
+
+        data_xor = [[-1, 1, 1], [1, -1, 1], [-1, -1, -1], [1, 1, -1]]
+        aciertos = 0
+        for patron in data_xor:
+            esperado = patron[-1]
+            pred = self.xor_model.forward(np.array(patron[:2]))
+            if np.sign(pred[0]) == np.sign(esperado):
+                aciertos += 1
+
+        return best_eta, best_beta, best_epochs, best_err, aciertos
 
     def _train_par_impar(self):
         X = DataHandler.load_digit_pixels('datos/TP2-ej3-mapa-de-pixeles-digitos-decimales.txt')
@@ -181,8 +212,8 @@ class MenuApp:
         np.random.seed(42)
 
         print("Ejercicio 1: XOR con MLP...")
-        xor_epochs, xor_err = self._train_xor()
-        print(f"  Convergi\u00f3 en {xor_epochs} \u00e9pocas (error final: {xor_err:.6f})")
+        best_eta, best_beta, xor_epochs, xor_err, aciertos = self._train_xor()
+        print(f"  Mejor: η={best_eta}, β={best_beta}, {xor_epochs} épocas, error={xor_err:.6f}, aciertos={aciertos}/4")
 
         print("Ejercicio 2: Par/Impar...")
         pi_epochs, pi_err = self._train_par_impar()

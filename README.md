@@ -1,17 +1,24 @@
-# redes_neuronales
+# Redes Neuronales
 
-quiero que las interfaces permitan elegir en que momento ver cada cosa, hacer una sola que contenga las opciones de lo que se quiere mostrar en el momento. ademas quiero que a cada opcion le agreges una ligera descripcion de lo que esta pasando como ecuacion encada ventana.
+Repositorio con 4 Trabajos Prácticos sobre redes neuronales, implementados en Python.
 
-|opciones			|
-|				|
-| | Ventana con | |Descripcion||
-| | el grafico  | |algoritmo  ||
-| |             | 	       || 
-| |		 |  |descripcion||
-| |		 |  | matematica||
-|
+## Estructura
 
-opciones listara todas las ventanas que teniamos hasta ahora por nombre
+```
+├── tp1PerceptronSimple/   → Perceptrón simple (desde cero)
+├── tp2PerceptronMulticapa/ → Perceptrón multicapa + backpropagation (desde cero)
+├── tp3Autocodificadores/   → Autoencoders (Keras/TensorFlow)
+├── tp4Convolucionales/     → CNN + Transfer Learning (Keras/TensorFlow)
+├── docs/                   → PDFs de teoría y enunciados
+└── info/                   → Documentación interna detallada
+```
 
+## Trabajos Prácticos
 
-asi, ademas quiero que saques la distancia minima entre dos puntos,no lo grafiques. ademas quiero que el hiperplano pase entre los dos convexossin tocarlos de ser posible. ademas no es necesario el punto [10] Mostrar todas las ventanas
+**TP1 — Perceptrón Simple:** Clasificación binaria (AND, XOR) y regresión con un perceptrón implementado desde cero en numpy. Demuestra separabilidad lineal y analiza generalización con distintas funciones de activación.
+
+**TP2 — Perceptrón Multicapa:** MLP con backpropagation desde cero. Resuelve XOR, clasificación par/impar de dígitos 5×7 y reconocimiento de dígitos con evaluación de robustez ante ruido.
+
+**TP3 — Autocodificadores:** Autoencoders en Keras para compresión y denoising de caracteres Font3, y autoencoder generativo sobre MNIST con espacio latente 2D interactivo.
+
+**TP4 — Redes Convolucionales:** Clasificación de imágenes de animales (8 clases) con CNN custom y Transfer Learning (MobileNetV2). El modelo con transfer learning alcanza 96.76% de accuracy.
